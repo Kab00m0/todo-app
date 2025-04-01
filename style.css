@@ -364,7 +364,7 @@ span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: clamp(4.5px, 0.9vw, 7px);
+    gap: 5px /*clamp(4.5px, 0.9vw, 7px)*/;
 
     position: absolute;
     top: 15px;
