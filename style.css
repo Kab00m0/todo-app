@@ -1,0 +1,597 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin:0;
+}
+
+:root {
+    --nav-width: 20vw;
+    --nav-min-width: 220px;
+    --nav-max-width: 270px;
+    --nav-x: 0;
+    --nav-y: 0;
+    --delete-button-color: #be4939;
+    --edit-button-color: #21a36d;
+    --editing-color: #1ae993;
+    --background-color: rgba(255, 255, 255, 0.9);
+    --primary-color: #007B83;
+    --border-color: #004044;
+    --hover-color: #33A1A6;
+    --active-color: #005f66;
+    --box-shadow-color: rgba(0, 0, 0, 0.2);
+    --secondary-color: #4CAF50;
+    --checkbox-color: #47c58a;
+    --finished-color: gray;
+    --dark-mode-button: rgba(0, 0, 0, 0.8);
+    --overlay-color: rgba(0, 0, 0, 0.3);
+    --nav-accent-color: #70d69b;
+    --nav-hover-color: rgba(255, 255, 255, 0.2);
+    --nav-line-color: rgba(255, 255, 255, 0.5);
+    --input-border-color: #ccc;
+    --text-color: #f1f1f1;
+    --to-do-color: #007B83;
+}
+
+.dark-mode {
+    --delete-button-color: #a54438; /* etwas dunkler, weniger Sättigung */
+    --edit-button-color: #1e8d5c;   /* leicht gedämpft */
+    --editing-color: #13c68e;       /* weniger neon, aber frisch */
+    --background-color: #121212;    /* Haupt-Hintergrund */
+    --primary-color: #005a61;       /* etwas heller, damit's auf dunkel wirkt */
+    --border-color: #1f3f41;        /* weniger hart als ganz schwarz */
+    --hover-color: #4bc5ca;         /* auf dunklem Grund sichtbar, aber nicht zu knallig */
+    --active-color: #00666c;
+    --box-shadow-color: rgba(255, 255, 255, 0.05); /* softer white shadow */
+    --secondary-color: #4CAF50; /* bleibt, da auf dunkel gut sichtbar */
+    --checkbox-color: #47c58a; /* kann bleiben */
+    --finished-color: #888888; /* helleres Grau für Lesbarkeit */
+    --dark-mode-button: rgba(255, 255, 255, 0.9); /* heller Button auf dunklem BG */
+    --overlay-color: rgba(0, 0, 0, 0.6); /* stärker für bessere Lesbarkeit */
+    --nav-accent-color: #70d69b; /* bleibt – passt auf dunkel */
+    --nav-hover-color: rgba(255, 255, 255, 0.15); /* dezenter */
+    --nav-line-color: rgba(255, 255, 255, 0.4);   /* leicht dunkler */
+    --input-border-color: #444; /* passt zu dunklem Input-BG */
+    --input-bg: #1e1e1e;
+    --card-bg: #1c1c1c;
+    --to-do-color: #b7e1e4dc;
+    --finished-color: rgb(196, 196, 196);
+  }
+  
+
+html {
+    height: 100%;
+}
+body {
+    min-height: 100%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+header {
+    height: 20em;
+    width: 100%;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-bottom: 2px solid var(--border-color);
+    transition: background-color 0.3s ease;
+}
+
+header > .headline {
+    margin: 0.5em;
+    font-size: clamp(3em, 7vw, 4em);
+}
+
+header > .description {
+    font-size: 1.2em;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+.main-container {
+    display: flex;
+}
+
+main {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: calc(100% - var(--nav-width));
+    max-width: calc(100% - var(--nav-min-width));
+}
+
+main > .timeframe-container {
+    min-width: 180px;
+    max-width: 220px;
+    width: 20%;
+    background-color: var(--primary-color);
+    padding: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    text-align: center;
+    margin: 100px 0px 50px 0px;
+}
+
+main > .timeframe-headline {
+    font-size: 2.5em;
+}
+
+.timeframe-headline {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.fade-out {
+    opacity: 0;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+.button {
+    color: white;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    float: right;
+    font-size: 30px;
+    height: auto;
+    width: auto;
+    padding: 5px;
+    /*background: var(--primary-color);*/
+    transition: all 0.4s ease;
+}
+
+.add-button {
+    margin: 0 0 0 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    font-weight: 100;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.add-button:hover {
+    transform: scale(1.1); /* Leichter Zoom-Effekt */
+    box-shadow: 0 4px 8px var(--box-shadow-color);
+}
+
+.button:hover {
+    filter: brightness(120%);
+}
+
+.button:active {
+    filter: brightness(80%);
+}
+
+.delete-button {
+    background-color: var(--delete-button-color);
+    width: clamp(2.2em, 2.5vw, 2.4em);
+}
+
+.edit-button {
+    background-color: var(--edit-button-color);
+    width: clamp(2.2em, 2.5vw, 2.4em);
+}
+
+.editing {
+    background-color: var(--editing-color);
+}
+
+.finished {
+    text-decoration: line-through;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+.delete-button:hover, .edit-button:hover {
+    box-shadow: 0 2px 2px var(--box-shadow-color);
+}
+
+@keyframes fadeOut {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+}
+
+.button-container {
+    display: flex;
+    gap: 10px;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+.to-do-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: clamp(7px, 1vw, 10px) clamp(10px, 1.5vw, 15px);
+    margin-bottom: clamp(0px, 1vw, 10px);
+    background-color: var(--background-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 20px;
+    transition: 
+        opacity 0.3s ease, 
+        height 0.3s ease 0.3s, 
+        margin 0.3s ease 0.3s, 
+        padding 0.3s ease 0.3s,
+        border-width 0.3s ease 0.3s,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.crossed {
+    transition: border 0.3s ease;
+}
+
+.to-do-item.dragging {
+    opacity: 0.5;
+}
+
+.to-do-item.over {
+    border-style: dashed;
+}
+
+.invisible {
+    opacity: 0;
+    transform: translateY(-10px);
+    height: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.to-do-left {
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+}
+
+.to-do-content {
+    border: 1px solid var(--to-do-color);
+    color: var(--to-do-color);
+    border-radius: 12px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 0;
+    background: var(--background-color);
+    font-size: clamp(14px, 2vw, 20px);
+    align-items: center;
+    padding: clamp(7px, 1vw, 10px) 10px;
+    animation: fadeIn 0.3s ease-in-out;
+    flex-grow: 1;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.to-do-text {
+    margin-right: clamp(10px, 2vw, 20px);
+    flex: 1;
+    min-width: 0;               
+    hyphens: auto;
+    word-break: break-word;
+    overflow-wrap: break-word;  
+    max-width: 100%;  
+}
+
+#to-do-container {
+    max-width: 700px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.to-do-number {
+    border: 1px solid var(--to-do-color);
+    color: var(--to-do-color);
+    border-radius: 100%;
+    width: clamp(24.5px, 4vw, 35px);
+    height: clamp(24.5px, 4vw, 35px);
+    font-size: clamp(14px, 2vw, 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+span {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.to-do-number span.updating {
+    transform: translateY(-3px); /* Leicht nach oben schieben */
+    opacity: 0; /* Unsichtbar */
+}
+  
+.todo-item.removing {
+    animation: fadeOut 0.3s ease-in-out forwards; /* Animation mit Vorwärtsrichtung */
+}
+
+.to-do-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--checkbox-color); /* Farbe der Checkbox */
+    margin-left: clamp(10px, 1.5vw, 15px);
+    flex-shrink: 0;
+}
+
+.to-do-item:has(.to-do-checkbox:checked) span {
+    text-decoration: line-through;
+    color: var(--finished-color);
+}
+
+.to-do-item:has(.to-do-checkbox:checked), .to-do-item:has(.to-do-checkbox:checked) div {
+    border-color: var(--finished-color);
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+.toggle {
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 1100;
+    font-size: 24px;
+    background: var(--background-color);
+    border: 2px solid var(--hover-color);
+    width: clamp(36px, 7vw, 55px);
+    height: clamp(36px, 7vw, 55px);
+    border-radius: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-menu {
+    display: none;
+}
+
+.toggle-dark-mode {
+    background: var(--dark-mode-button);
+    left: auto;
+    right: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.dark-mode-selected {
+    background-color: rgba(255, 255, 255);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--overlay-color);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+  }
+
+nav li a.active {
+    border-left: 4px solid var(--nav-accent-color);
+}
+
+nav {
+    margin-top: 70px;
+    width: var(--nav-width);
+    min-width: var(--nav-min-width);
+    max-width: var(--nav-max-width);
+    height: clamp(420px, 50vh, 500px);
+    background-color: var(--primary-color);
+    border: 2px solid var(--border-color);
+    border-left: none;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 4px 6px var(--box-shadow-color);
+    border-radius: 0 clamp(126px, 20vw, 150px) clamp(126px, 20vw, 150px) 0;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+nav ul {
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 22px;
+    font-weight: bold;
+    gap: 60px;
+}
+
+nav li {
+    position: relative;
+}
+
+nav li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-left: 4px solid transparent;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    border-radius: 5px;
+}
+
+nav li a:hover {
+    color: var(--nav-accent-color); 
+    background-color: var(--nav-hover-color);
+}
+
+
+nav li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    bottom: -30px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    width: calc(var(--nav-width)*3/4); /* Breite der Linie */
+    min-width: calc(var(--nav-min-width)*3/4);
+    max-width: calc(var(--nav-max-width)*3/4);
+    height: 1px;
+    background-color: var(--nav-line-color); 
+}
+
+.navbar-placeholder {
+    height: 500px;
+    width: var(--nav-width);
+    min-width: var(--nav-min-width);
+    max-width: var(--nav-max-width);
+}
+
+@media (max-width: 768px) {
+    main {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .navbar {
+        position: fixed; 
+        transform: translateX(-100%) translateY(var(--nav-y));
+        z-index: 1000;
+    }
+
+    .navbar-placeholder {
+        position: fixed;
+    }
+  
+    .navbar.open {
+      transform: translateX(0) translateY(var(--nav-y));
+    }
+  
+    .toggle-menu {
+        display: block;
+    }
+
+    .line {
+        width: clamp(16px, 3.2vw, 25px);
+        height: clamp(2.6px, 0.5vw, 4px);
+        margin: clamp(4.5px, 0.9vw, 7px) auto;
+        border-radius: 2px;
+        background-color: var(--hover-color);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .top-line-selected {
+        transform: translateY(clamp(7.2px, 1.4vw, 11px)) rotate(45deg) scaleX(1.3);
+    }
+
+    .middle-line-selected {
+        opacity: 0;
+    }
+
+    .bottom-line-selected {
+        transform: translateY(calc(-1*clamp(7.2px, 1.4vw, 11px))) rotate(-45deg) scaleX(1.3);
+    }
+  
+    .overlay.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+  
+    main {
+      padding-left: 0 !important; /* falls du Padding für Sidebar hast */
+    }
+  }
+
+@media (max-height: 820px) {
+    :root {
+        --nav-y: -50%;
+      }
+    
+    nav {
+        top: 50%;
+        transform: translateY(var(--nav-y));
+        margin: 0;
+    }
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+.input-container {
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-top {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.error-message {
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid var(--delete-button-color);
+    border-radius: 5px;
+    color: var(--delete-button-color);
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.visible {
+    opacity: 1;
+}
+
+.input {
+    background-color: var(--input-bg);
+    max-width: 400px;
+    width: 50%;
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 10px;
+    font-size: 20px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
+    color: var(--primary-color);
+}
+
+.input:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--box-shadow-color);
+}
+  
+.input:focus {
+    border-color: var(--nav-accent-color); 
+    transform: scale(1.02); 
+    outline: none;
+}

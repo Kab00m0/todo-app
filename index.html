@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do-List</title>
+    <script src="script.js" defer></script>
+    <link href="style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="manifest.json" rel="manifest"/>
+    <meta name="theme-color" content="#007B83" />
+</head>
+<body>
+    <header>
+        <button class="toggle toggle-menu">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </button>
+        <h1 class="headline">To-Do-List</h1>
+        <p class="description">Plan your day, week and month!</p>
+        <button class=" toggle toggle-dark-mode"></button>
+    </header>
+
+    <div class="main-container">
+        <div class="navbar-placeholder"></div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#" class="daily-list active">Daily list</a></li>
+                <li><a href="#" class="weekly-list">Weekly list</a></li>
+                <li><a href="#" class="monthly-list">Monthly list</a></li>
+            </ul>
+        </nav>
+        <div class="overlay"></div>
+        <main>
+            <div class="timeframe-container">
+                <h1 class="timeframe-headline">Daily</h1>
+            </div>
+            <div class="input-container">
+                <div class="input-top">
+                    <input type="text" class="input input-error" placeholder="Enter To-Do">
+                    <button class="add-button button" onclick="addToDo()">+</button>
+                </div>
+                <span class="error-message">Please enter a task.</span>
+            </div>
+            <div id="to-do-container">
+                <!-- STRUCTURE FOR TO-DO-ITEM:
+
+                <div class="to-do-item">
+                    <div class="to-do-left">
+                        <div class="to-do-number">
+                            <span>1</span>
+                        </div>
+                        <div class="to-do-content">
+                            <span class="to-do-text">Buy groceries Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima, labore?</span>
+                            <div class="button-container">
+                                <button class="button edit-button fa fa-edit"></button>
+                                <button class="button delete-button fa fa-trash-o" onclick="deleteToDo(this)"></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <input type="checkbox" class="to-do-checkbox" />
+                </div>
+                -->
+                
+            </div>
+        </main>
+</body>
+</html>
