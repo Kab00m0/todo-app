@@ -360,11 +360,11 @@ span {
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .toggle {
-    display: flex;
+    /*display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*gap: 5px /*clamp(4.5px, 0.9vw, 7px)*/;
+    /*gap: 5px /*clamp(4.5px, 0.9vw, 7px)*/
 
     position: absolute;
     top: 15px;
@@ -502,8 +502,12 @@ nav li:not(:last-child)::after {
     }
   
     .toggle-menu {
-        display: block;
-    }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(4.5px, 0.9vw, 7px);
+      }
 
     .line {
         width: clamp(16px, 3.2vw, 25px);
