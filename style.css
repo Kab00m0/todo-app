@@ -385,6 +385,15 @@ span {
     display: none;
 }
 
+.line {
+    width: clamp(16px, 3.2vw, 25px);
+    height: clamp(2.6px, 0.5vw, 4px);
+    /*margin: clamp(4.5px, 0.9vw, 7px);*/
+    border-radius: 2px;
+    background-color: var(--hover-color);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
 .toggle-dark-mode {
     background: var(--dark-mode-button);
     left: auto;
@@ -508,15 +517,6 @@ nav li:not(:last-child)::after {
         align-items: center;
         gap: clamp(4.5px, 0.9vw, 7px);
       }
-
-    .line {
-        width: clamp(16px, 3.2vw, 25px);
-        height: clamp(2.6px, 0.5vw, 4px);
-        /*margin: clamp(4.5px, 0.9vw, 7px);*/
-        border-radius: 2px;
-        background-color: var(--hover-color);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
 
     .top-line-selected {
         transform: translateY(clamp(7.2px, 1.4vw, 11px)) rotate(45deg) scaleX(1.3);
