@@ -154,20 +154,24 @@ main > .timeframe-headline {
 
 .add-button {
     margin: 0 0 0 20px;
-    width: 40px;
-    height: 40px;
+    width: clamp(40px, 10vw, 60px);
+    aspect-ratio: 1 / 1;
     border-radius: 50%;
     background-color: var(--primary-color);
-    font-weight: 100;
-    font-size: 28px;
+    
+    font-weight: bold;          
+    font-size: clamp(20px, 6vw, 28px);
+    line-height: 1;             
+    font-family: inherit;
+  
     display: flex;
     align-items: center;
     justify-content: center;
+  
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-}
-
+  }
 .add-button:hover {
     transform: scale(1.1); /* Leichter Zoom-Effekt */
     box-shadow: 0 4px 8px var(--box-shadow-color);
