@@ -172,6 +172,7 @@ main > .timeframe-headline {
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
   }
+  
 .add-button:hover {
     transform: scale(1.1); /* Leichter Zoom-Effekt */
     box-shadow: 0 4px 8px var(--box-shadow-color);
