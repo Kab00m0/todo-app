@@ -361,19 +361,21 @@ span {
 
 .toggle {
     aspect-ratio: 1 / 1;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 15px;
     left: 15px;
     z-index: 1100;
-    font-size: 24px;
+    font-size: clamp(16px, 5vw, 24px);
     background: var(--background-color);
     border: 2px solid var(--hover-color);
     width: clamp(36px, 7vw, 55px);
     height: clamp(36px, 7vw, 55px);
-    border-radius: 100%;
+    border-radius: 50%;
     transition: background-color 0.3s ease;
-}
+  }
 
 .toggle-menu {
     display: none;
