@@ -360,11 +360,11 @@ span {
 /*----------------------------------------------------------------------------------------------------------------------------------------------*/
 
 .toggle {
-    /*display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /*gap: 5px /*clamp(4.5px, 0.9vw, 7px)*/
+    gap: clamp(4.5px, 0.9vw, 7px);
 
     position: absolute;
     top: 15px;
@@ -512,7 +512,7 @@ nav li:not(:last-child)::after {
     .line {
         width: clamp(16px, 3.2vw, 25px);
         height: clamp(2.6px, 0.5vw, 4px);
-        margin: clamp(4.5px, 0.9vw, 7px);
+        /*margin: clamp(4.5px, 0.9vw, 7px);*/
         border-radius: 2px;
         background-color: var(--hover-color);
         transition: transform 0.3s ease, opacity 0.3s ease;
